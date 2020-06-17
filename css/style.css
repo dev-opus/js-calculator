@@ -31,7 +31,6 @@ main {
 footer {
 	flex-shrink: 0;
 	align-self: center;
-	margin-bottom: 1em;
 }
 
 footer .author-details a {
@@ -45,12 +44,12 @@ footer .author-details a:hover {
 
 header {
 	align-self: center;
-	line-height: 0.6;
 }
 
 header .title {
 	text-transform: uppercase;
 	letter-spacing: 3px;
+	margin-bottom: 0;
 }
 
 header .description {
@@ -71,7 +70,6 @@ header .description {
 }
 
 .calc-casing {
-	height: 70%;
 	width: 269px;
 	margin: 0 auto;
 	border: 5px solid rgb(16, 26, 24);
