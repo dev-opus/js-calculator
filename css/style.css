@@ -34,7 +34,7 @@ footer {
 	margin-bottom: 1em;
 }
 
-footer .author-details a{
+footer .author-details a {
 	text-decoration: none;
 	color: firebrick;
 }
@@ -74,7 +74,7 @@ header .description {
 	height: 70%;
 	width: 269px;
 	margin: 0 auto;
-	border: 3px solid rgb(16, 26, 24);
+	border: 5px solid rgb(16, 26, 24);
 
 	/* ============ */
 	margin-top: 3em;
@@ -106,7 +106,7 @@ header .description {
 }
 
 .calc-display-container {
-	border-bottom: 1px solid black;
+	border-bottom: 2px solid rgb(16, 26, 24);
 }
 
 .calc-operator-container {
@@ -152,6 +152,8 @@ header .description {
 }
 
 .small-display {
+	border-bottom: 0.1px solid rgba(16, 26, 24, 0.226);
+	padding: 20px;
 	grid-column-start: 1;
 	grid-column-end: 4;
 	grid-row-start: 1;
@@ -168,7 +170,12 @@ header .description {
 .large-display,
 .small-display {
 	padding: 8px;
-	padding-right: 0;
+	padding-right: 2px;
+	padding-top: 1.4em;
+}
+
+.large-display {
+	padding-top: 2.7em;
 }
 
 /* 
@@ -192,4 +199,3 @@ header .description {
 	========================================================================================
 	========================================================================================
 */
-
