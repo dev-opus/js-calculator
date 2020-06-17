@@ -1,0 +1,195 @@
+:root {
+	box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
+}
+
+body {
+	background-color: hsla(56, 15%, 45%, 0.829);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+footer {
+	flex-shrink: 0;
+	align-self: center;
+	margin-bottom: 1em;
+}
+
+footer .author-details a{
+	text-decoration: none;
+	color: firebrick;
+}
+
+footer .author-details a:hover {
+	color: rgba(178, 34, 34, 0.712);
+}
+
+header {
+	align-self: center;
+	line-height: 0.6;
+}
+
+header .title {
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+header .description {
+	text-transform: lowercase;
+	text-align: center;
+	margin-top: 0;
+	font-style: oblique;
+}
+
+/*  ===========================================================================
+    ===========================================================================
+ */
+
+.container {
+	max-width: 1080px;
+	width: 500px;
+	margin: 0 auto;
+}
+
+.calc-casing {
+	height: 70%;
+	width: 269px;
+	margin: 0 auto;
+	border: 3px solid rgb(16, 26, 24);
+
+	/* ============ */
+	margin-top: 3em;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(10, 1fr);
+	gap: 5px;
+	text-align: center;
+}
+
+.calc-display-container {
+	text-align: right;
+	grid-column-start: 1;
+	grid-column-end: 4;
+	grid-row-start: 1;
+	grid-row-end: 4;
+}
+
+.calc-digit-container {
+	margin-right: 3px;
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+.calc-digit-container,
+.calc-operator-container {
+	grid-row-start: 5;
+	grid-row-end: 11;
+}
+
+.calc-display-container {
+	border-bottom: 1px solid black;
+}
+
+.calc-operator-container {
+	border-left: 1px solid rgba(20, 27, 26, 0.945);
+}
+
+/* 
+    =========================================================================
+    =========================================================================
+*/
+
+.calc-digit-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 7px;
+	margin-bottom: 15px;
+}
+
+.digit {
+	text-align: center;
+	padding-top: 15px;
+}
+
+.digit:hover,
+.operator:hover {
+	cursor: pointer;
+}
+
+.digit:active,
+.operator:active {
+	transform: scale(2);
+}
+
+/* 
+	==========================================================================
+	==========================================================================
+*/
+
+.calc-display-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+}
+
+.small-display {
+	grid-column-start: 1;
+	grid-column-end: 4;
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+
+.large-display {
+	grid-column-start: 1;
+	grid-column-end: 4;
+	grid-row-start: 3;
+	grid-row-end: 6;
+}
+
+.large-display,
+.small-display {
+	padding: 8px;
+	padding-right: 0;
+}
+
+/* 
+	========================================================================================
+	========================================================================================
+*/
+
+.operator {
+	font-size: 1.5em;
+}
+
+.operator:first-child {
+	padding-top: 15px;
+}
+
+.calc-operator-container {
+	display: grid;
+}
+
+/* 
+	========================================================================================
+	========================================================================================
+*/
+
