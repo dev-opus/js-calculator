@@ -44,10 +44,10 @@ function operate(operator, a, b) {
 		case '-':
 			return subtract(a, b);
 			break;
-		case '*':
+		case 'x':
 			return multiply(a, b);
 			break;
-		case '/':
+		case '÷':
 			return divide(a, b);
 	}
 }
@@ -102,9 +102,16 @@ function stageNumber(varr) {
 }
 
 const numbers = Array.from(document.querySelectorAll('.number'));
+const operators = Array.from(document.querySelectorAll('.operator'));
 
 let number = numbers.forEach((num) =>
 	num.addEventListener('click', () => {
 		return stageNumber(num.textContent);
+	}),
+);
+
+let operator = operators.forEach((ope) =>
+	ope.addEventListener('click', () => {
+		return stageOperator(ope.textContent)
 	}),
 );
