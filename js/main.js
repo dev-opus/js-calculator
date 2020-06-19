@@ -74,9 +74,18 @@ function getAns() {
 	return answer;
 }
 
-function stageOperator(varr) {
+function stageDisplayOperator(varr) {
 	if (area.a.length > 0 && area.b.length < 1) {
+		if (area.o != null) return;
+
 		area.o = varr;
+		if (largeDisplay.textContent.includes(varr)) return;
+
+		if (smallDisplay.textContent != '') {
+			smallDisplay.textContent = '';
+		}
+
+		largeDisplay.textContent += ' ' + varr + ' ';
 		return 1;
 	}
 	if (area.a.length < 1) {
@@ -84,25 +93,46 @@ function stageOperator(varr) {
 		return 2;
 	}
 	if (area.a.length > 0 && area.b.length > 0) {
-		getAns();
+		let ans = getAns();
+
+		smallDisplay.textContent = largeDisplay.textContent + ' = ' + ans;
+
 		area.o = varr;
+		largeDisplay.textContent = ans + ' ' + area.o + ' ';
 		return 3;
 	}
 }
 
-function stageNumber(varr) {
+function stageDisplayNumber(varr) {
 	if (area.o !== null) {
 		if (varr === '.' && area.b.includes(varr)) {
 			return;
 		}
+
 		area.b.push(varr);
+
+		if (largeDisplay.textContent == '0') {
+			return (largeDisplay.textContent = varr);
+		}
+
+		if (largeDisplay.textContent != '0') {
+			return (largeDisplay.textContent += varr);
+		}
+
 		return;
 	}
+
 	if (area.o === null) {
 		if (varr === '.' && area.a.includes(varr)) {
 			return;
 		}
+
 		area.a.push(varr);
+		if (largeDisplay.textContent == '0') {
+			return (largeDisplay.textContent = varr);
+		}
+
+		largeDisplay.textContent += varr;
 		return;
 	}
 }
@@ -111,7 +141,9 @@ function stageAnswer(varr) {
 	if (area.a.length < 1) return;
 
 	if (area.a.length > 0 && area.b.length > 0) {
-		return getAns();
+		let ans = getAns();
+		smallDisplay.textContent = largeDisplay.textContent + ' = ' + ans;
+		largeDisplay.textContent = ans;
 	}
 }
 
@@ -124,12 +156,19 @@ const numbers = Array.from(document.querySelectorAll('.number'));
 const operators = Array.from(document.querySelectorAll('.operator'));
 const equalTo = document.querySelector('#equal');
 
+const largeDisplay = document.querySelector('.large-display');
+const smallDisplay = document.querySelector('.small-display');
+
 let number = numbers.forEach((num) =>
-	num.addEventListener('click', () => stageNumber(num.textContent)),
+	num.addEventListener('click', () => {
+		stageDisplayNumber(num.textContent);
+	}),
 );
 
 let operator = operators.forEach((ope) =>
-	ope.addEventListener('click', () => stageOperator(ope.textContent)),
+	ope.addEventListener('click', () => {
+		stageDisplayOperator(ope.textContent);
+	}),
 );
 
 let equals = equalTo.addEventListener('click', (e) =>
