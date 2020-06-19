@@ -129,12 +129,14 @@ header .description {
 }
 
 .digit:hover,
-.operator:hover {
+.operator:hover,
+#backspace:hover {
 	cursor: pointer;
 }
 
 .digit:active,
-.operator:active {
+.operator:active,
+#backspace:active {
 	transform: scale(2);
 }
 
@@ -181,11 +183,12 @@ header .description {
 	========================================================================================
 */
 
-.operator {
+.operator,
+#backspace {
 	font-size: 1.5em;
 }
 
-.operator:first-child {
+#backspace {
 	padding-top: 15px;
 }
 
