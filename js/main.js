@@ -66,6 +66,14 @@ const area = {
 	},
 };
 
+function getAns() {
+	let answer = area.ans();
+	area.a = [answer];
+	area.b = [];
+	area.o = null;
+	return answer;
+}
+
 function stageOperator(varr) {
 	if (area.a.length > 0 && area.b.length < 1) {
 		area.o = varr;
@@ -76,9 +84,7 @@ function stageOperator(varr) {
 		return 2;
 	}
 	if (area.a.length > 0 && area.b.length > 0) {
-		let answer = area.ans();
-		area.a = [answer];
-		area.b = [];
+		getAns();
 		area.o = varr;
 		return 3;
 	}
@@ -101,17 +107,31 @@ function stageNumber(varr) {
 	}
 }
 
+function stageAnswer(varr) {
+	if (area.a.length < 1) return;
+
+	if (area.a.length > 0 && area.b.length > 0) {
+		return getAns();
+	}
+}
+
+/*
+	=============================================================================
+	=============================================================================
+*/
+
 const numbers = Array.from(document.querySelectorAll('.number'));
 const operators = Array.from(document.querySelectorAll('.operator'));
+const equalTo = document.querySelector('#equal');
 
 let number = numbers.forEach((num) =>
-	num.addEventListener('click', () => {
-		return stageNumber(num.textContent);
-	}),
+	num.addEventListener('click', () => stageNumber(num.textContent)),
 );
 
 let operator = operators.forEach((ope) =>
-	ope.addEventListener('click', () => {
-		return stageOperator(ope.textContent)
-	}),
+	ope.addEventListener('click', () => stageOperator(ope.textContent)),
+);
+
+let equals = equalTo.addEventListener('click', (e) =>
+	stageAnswer(e.target.textContent),
 );
