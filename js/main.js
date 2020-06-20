@@ -175,6 +175,39 @@ function stageAnswer(varr) {
 	}
 }
 
+function wipe() {
+	area.a = [];
+	area.o = null;
+	area.b = [];
+
+	smallDisplay.textContent = '';
+	largeDisplay.textContent = '0';
+}
+
+function bks() {
+	if (smallDisplay.textContent !== '') {
+		if (area.b.length > 0) {
+			area.b.pop();
+			smallDisplay.textContent = `${area.a.join('')} ${area.o} ${area.b.join(
+				'',
+			)}`;
+			return 'yippeee';
+		}
+
+		if (area.o !== null) {
+			area.o = null;
+			smallDisplay.textContent = `${area.a.join('')} `;
+			return 'osheey!';
+		}
+
+		if (area.a.length > 0) {
+			area.a.pop();
+			smallDisplay.textContent = area.a.join('');
+			return 'mad ooo!';
+		}
+	}
+}
+
 /*
 	=============================================================================
 	=============================================================================
@@ -183,6 +216,7 @@ function stageAnswer(varr) {
 const numbers = Array.from(document.querySelectorAll('.number'));
 const operators = Array.from(document.querySelectorAll('.operator'));
 const equalTo = document.querySelector('#equal');
+const clearButton = document.getElementById('clear');
 
 const largeDisplay = document.querySelector('.large-display');
 const smallDisplay = document.querySelector('.small-display');
@@ -202,3 +236,5 @@ let operator = operators.forEach((ope) =>
 let equals = equalTo.addEventListener('click', (e) =>
 	stageAnswer(e.target.textContent),
 );
+
+clearButton.addEventListener('click', () => wipe());
