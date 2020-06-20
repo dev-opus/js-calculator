@@ -70,7 +70,8 @@ const area = {
 
 function getAns() {
 	let answer = area.ans();
-	if (!Number.isInteger(answer)) {
+
+	if (typeof answer === 'number' && !Number.isInteger(answer)) {
 		let ansArr = answer.toString().split('');
 
 		let index = ansArr.indexOf('.') + 1;
@@ -78,15 +79,14 @@ function getAns() {
 		let tempArr = [];
 
 		for (let i = index; i < ansArr; i++) {
-			tempArr.push(ansArr[i])
+			tempArr.push(ansArr[i]);
 		}
 
-		let every = tempArr.every(x => x > 0);
+		let every = tempArr.every((x) => x > 0);
 
 		if (every) {
 			answer = answer.toFixed(1);
-		}
-		else {
+		} else {
 			answer = answer.toFixed(4);
 		}
 	}
@@ -102,7 +102,7 @@ function stageDisplayOperator(varr) {
 			if (area.o !== null && varr == '-') {
 				area.b.push(varr);
 				smallDisplay.textContent += area.b.join('');
-				console.log(7);
+
 				return;
 			}
 		}
@@ -113,14 +113,13 @@ function stageDisplayOperator(varr) {
 		}
 
 		area.o = varr;
-		smallDisplay.textContent = area.a.join('') + '  ' + varr + ' ';
+		smallDisplay.textContent = area.a.join('') + ' ' + varr + ' ';
 		largeDisplay.textContent = 0;
 
 		return 1;
 	}
 
 	if (area.a.length < 1) {
-		console.log('no first number');
 		if (varr === '-') {
 			area.a.push(varr);
 			smallDisplay.textContent = area.a.join('');
