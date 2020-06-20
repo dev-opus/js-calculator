@@ -15,6 +15,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+	if (b === 0) return 'Math Error';
 	return a / b;
 }
 
@@ -37,6 +38,7 @@ function toPercentage(a) {
 }
 
 function operate(operator, a, b) {
+	if (isNaN(a) || isNaN(b)) return 'Syntax Error';
 	switch (operator) {
 		case '+':
 			return add(a, b);
@@ -68,6 +70,9 @@ const area = {
 
 function getAns() {
 	let answer = area.ans();
+	if (!Number.isInteger(answer)) {
+		answer = answer.toFixed(4);
+	}
 	area.a = [answer];
 	area.b = [];
 	area.o = null;
@@ -79,13 +84,8 @@ function stageDisplayOperator(varr) {
 		if (area.o != null) return;
 
 		area.o = varr;
-		if (largeDisplay.textContent.includes(varr)) return;
-
-		if (smallDisplay.textContent != '') {
-			smallDisplay.textContent = '';
-		}
-
-		largeDisplay.textContent += ' ' + varr + ' ';
+		smallDisplay.textContent = area.a.join('') + ' ' + varr + ' ';
+		largeDisplay.textContent = 0;
 		return 1;
 	}
 	if (area.a.length < 1) {
@@ -94,45 +94,29 @@ function stageDisplayOperator(varr) {
 	}
 	if (area.a.length > 0 && area.b.length > 0) {
 		let ans = getAns();
-
-		smallDisplay.textContent = largeDisplay.textContent + ' = ' + ans;
-
 		area.o = varr;
-		largeDisplay.textContent = ans + ' ' + area.o + ' ';
+		smallDisplay.textContent = ans + ' ' + varr + ' ';
+		largeDisplay.textContent = 0;
 		return 3;
 	}
 }
 
 function stageDisplayNumber(varr) {
 	if (area.o !== null) {
-		if (varr === '.' && area.b.includes(varr)) {
-			return;
-		}
+		if (varr === '.' && area.b.includes(varr)) return;
 
 		area.b.push(varr);
-
-		if (largeDisplay.textContent == '0') {
-			return (largeDisplay.textContent = varr);
-		}
-
-		if (largeDisplay.textContent != '0') {
-			return (largeDisplay.textContent += varr);
-		}
+		smallDisplay.textContent += varr;
 
 		return;
 	}
 
 	if (area.o === null) {
-		if (varr === '.' && area.a.includes(varr)) {
-			return;
-		}
+		if (varr === '.' && area.a.includes(varr)) return;
 
 		area.a.push(varr);
-		if (largeDisplay.textContent == '0') {
-			return (largeDisplay.textContent = varr);
-		}
+		smallDisplay.textContent += varr;
 
-		largeDisplay.textContent += varr;
 		return;
 	}
 }
@@ -142,8 +126,9 @@ function stageAnswer(varr) {
 
 	if (area.a.length > 0 && area.b.length > 0) {
 		let ans = getAns();
-		smallDisplay.textContent = largeDisplay.textContent + ' = ' + ans;
+
 		largeDisplay.textContent = ans;
+		smallDisplay.textContent = '';
 	}
 }
 
