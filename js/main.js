@@ -78,15 +78,14 @@ function getAns() {
 		let tempArr = [];
 
 		for (let i = index; i < ansArr; i++) {
-			tempArr.push(ansArr[i])
+			tempArr.push(ansArr[i]);
 		}
 
-		let every = tempArr.every(x => x > 0);
+		let every = tempArr.every((x) => x > 0);
 
 		if (every) {
 			answer = answer.toFixed(1);
-		}
-		else {
+		} else {
 			answer = answer.toFixed(4);
 		}
 	}
@@ -153,7 +152,13 @@ function stageDisplayNumber(varr) {
 		if (varr === '.' && area.a.includes(varr)) return;
 
 		area.a.push(varr);
-		smallDisplay.textContent += varr;
+
+		if (largeDisplay.textContent == '0') {
+			return (smallDisplay.textContent += varr);
+		}
+
+		smallDisplay.textContent += largeDisplay.textContent + varr;
+		largeDisplay.textContent = '0';
 
 		return;
 	}
