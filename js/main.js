@@ -71,7 +71,24 @@ const area = {
 function getAns() {
 	let answer = area.ans();
 	if (!Number.isInteger(answer)) {
-		answer = answer.toFixed(4);
+		let ansArr = answer.toString().split('');
+
+		let index = ansArr.indexOf('.') + 1;
+
+		let tempArr = [];
+
+		for (let i = index; i < ansArr; i++) {
+			tempArr.push(ansArr[i])
+		}
+
+		let every = tempArr.every(x => x > 0);
+
+		if (every) {
+			answer = answer.toFixed(1);
+		}
+		else {
+			answer = answer.toFixed(4);
+		}
 	}
 	area.a = [answer];
 	area.b = [];
@@ -80,23 +97,44 @@ function getAns() {
 }
 
 function stageDisplayOperator(varr) {
+	if (area.b.length < 1) {
+		if (area.a.length > 0) {
+			if (area.o !== null && varr == '-') {
+				area.b.push(varr);
+				smallDisplay.textContent += area.b.join('');
+				console.log(7);
+				return;
+			}
+		}
+	}
 	if (area.a.length > 0 && area.b.length < 1) {
-		if (area.o != null) return;
+		if (area.o != null) {
+			return;
+		}
 
 		area.o = varr;
-		smallDisplay.textContent = area.a.join('') + ' ' + varr + ' ';
+		smallDisplay.textContent = area.a.join('') + '  ' + varr + ' ';
 		largeDisplay.textContent = 0;
+
 		return 1;
 	}
+
 	if (area.a.length < 1) {
 		console.log('no first number');
+		if (varr === '-') {
+			area.a.push(varr);
+			smallDisplay.textContent = area.a.join('');
+		}
 		return 2;
 	}
+
 	if (area.a.length > 0 && area.b.length > 0) {
 		let ans = getAns();
 		area.o = varr;
+
 		smallDisplay.textContent = ans + ' ' + varr + ' ';
 		largeDisplay.textContent = 0;
+
 		return 3;
 	}
 }
