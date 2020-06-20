@@ -73,6 +73,7 @@ header .description {
 	width: 269px;
 	margin: 0 auto;
 	border: 5px solid rgb(16, 26, 24);
+	height: 60vh;
 
 	/* ============ */
 	margin-top: 3em;
@@ -101,6 +102,8 @@ header .description {
 .calc-operator-container {
 	grid-row-start: 5;
 	grid-row-end: 11;
+	height: 100%;
+	/* border: 2px solid red; */
 }
 
 .calc-display-container {
@@ -120,22 +123,24 @@ header .description {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 7px;
-	margin-bottom: 15px;
+	/* margin-bottom: 45px; */
 }
 
 .digit {
 	text-align: center;
-	padding-top: 15px;
+	padding-top: 10px;
 }
 
 .digit:hover,
 .operator:hover,
-#backspace:hover {
+#backspace:hover,
+#square-root:hover {
 	cursor: pointer;
 }
 
 .digit:active,
 .operator:active,
+#square-root:active,
 #backspace:active {
 	transform: scale(2);
 }
@@ -148,23 +153,22 @@ header .description {
 .calc-display-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(5, 1fr);
+	grid-template-rows: repeat(2, 1fr);
 }
 
 .small-display {
 	border-bottom: 0.1px solid rgba(16, 26, 24, 0.226);
-	padding: 20px;
 	grid-column-start: 1;
 	grid-column-end: 4;
 	grid-row-start: 1;
-	grid-row-end: 3;
+	grid-row-end: 2;
 }
 
 .large-display {
 	grid-column-start: 1;
 	grid-column-end: 4;
-	grid-row-start: 3;
-	grid-row-end: 6;
+	grid-row-start: 2;
+	grid-row-end: 4;
 }
 
 .large-display,
@@ -174,7 +178,7 @@ header .description {
 }
 
 .large-display {
-	padding-top: 2.7em;
+	padding-top: 1.7em;
 }
 
 /* 
@@ -182,18 +186,16 @@ header .description {
 	========================================================================================
 */
 
-.operator,
-#backspace {
-	font-size: 1.5em;
-}
-
-#backspace {
-	padding-top: 15px;
+.operator {
+	font-size: 1.3em;
 }
 
 .calc-operator-container {
 	display: grid;
+	margin-top: 5px;
+	
 }
+
 
 /* 
 	========================================================================================
