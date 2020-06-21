@@ -90,7 +90,9 @@ function getAns() {
 			answer = answer.toFixed(4);
 		}
 	}
-	area.a = [answer];
+	answer = answer.toString();
+	answer = answer.split('');
+	area.a = answer;
 	area.b = [];
 	area.o = null;
 	return answer;
@@ -170,7 +172,7 @@ function stageAnswer(varr) {
 	if (area.a.length > 0 && area.b.length > 0) {
 		let ans = getAns();
 
-		largeDisplay.textContent = ans;
+		largeDisplay.textContent = ans.join('');
 		smallDisplay.textContent = '';
 	}
 }
@@ -206,6 +208,12 @@ function bks() {
 			return 'mad ooo!';
 		}
 	}
+
+	if (largeDisplay.textContent != '0' && area.a.length > 0) {
+		area.a.pop();
+		largeDisplay.textContent = area.a.join('');
+		if (area.a.length < 1) largeDisplay.textContent = '0';
+	}
 }
 
 /*
@@ -217,6 +225,7 @@ const numbers = Array.from(document.querySelectorAll('.number'));
 const operators = Array.from(document.querySelectorAll('.operator'));
 const equalTo = document.querySelector('#equal');
 const clearButton = document.getElementById('clear');
+const deleteButton = document.getElementById('backspace')
 
 const largeDisplay = document.querySelector('.large-display');
 const smallDisplay = document.querySelector('.small-display');
@@ -238,3 +247,5 @@ let equals = equalTo.addEventListener('click', (e) =>
 );
 
 clearButton.addEventListener('click', () => wipe());
+
+deleteButton.addEventListener('click', () => bks())
