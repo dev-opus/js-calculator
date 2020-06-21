@@ -238,7 +238,7 @@ function getFactorial() {
 		let fact = factorial(area.a.join(''));
 
 		fact = fact.toString();
-		fact = fact.split();
+		fact = fact.split('');
 		area.a = fact;
 
 		smallDisplay.textContent = '';
