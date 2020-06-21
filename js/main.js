@@ -70,7 +70,6 @@ const area = {
 
 function getAns() {
 	let answer = area.ans();
-
 	if (typeof answer === 'number' && !Number.isInteger(answer)) {
 		let ansArr = answer.toString().split('');
 
@@ -85,7 +84,7 @@ function getAns() {
 		let every = tempArr.every((x) => x > 0);
 
 		if (every) {
-			answer = answer.toFixed(1);
+			answer = answer.toFixed(2);
 		} else {
 			answer = answer.toFixed(4);
 		}
