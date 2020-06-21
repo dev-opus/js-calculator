@@ -133,7 +133,7 @@ function stageDisplayOperator(varr) {
 		let ans = getAns();
 		area.o = varr;
 
-		smallDisplay.textContent = ans + ' ' + varr + ' ';
+		smallDisplay.textContent = ans.join('') + ' ' + varr + ' ';
 		largeDisplay.textContent = 0;
 
 		return 3;
@@ -225,7 +225,7 @@ const numbers = Array.from(document.querySelectorAll('.number'));
 const operators = Array.from(document.querySelectorAll('.operator'));
 const equalTo = document.querySelector('#equal');
 const clearButton = document.getElementById('clear');
-const deleteButton = document.getElementById('backspace')
+const deleteButton = document.getElementById('backspace');
 
 const largeDisplay = document.querySelector('.large-display');
 const smallDisplay = document.querySelector('.small-display');
@@ -248,4 +248,4 @@ let equals = equalTo.addEventListener('click', (e) =>
 
 clearButton.addEventListener('click', () => wipe());
 
-deleteButton.addEventListener('click', () => bks())
+deleteButton.addEventListener('click', () => bks());
