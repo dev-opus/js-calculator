@@ -215,6 +215,37 @@ function bks() {
 	}
 }
 
+function getPercent() {
+	if (area.b.length > 0 && area.o !== null) return;
+
+	if (area.a.length > 0) {
+		let percent = toPercentage(area.a.join(''));
+
+		percent = percent.toString();
+		percent = percent.split('');
+		area.a = percent;
+
+		smallDisplay.textContent = '';
+		largeDisplay.textContent = area.a.join('');
+		return 'yippe';
+	}
+}
+
+function getFactorial() {
+	if (area.b.length > 0 && area.o !== null) return;
+
+	if (area.a.length > 0) {
+		let fact = factorial(area.a.join(''));
+
+		fact = fact.toString();
+		fact = fact.split();
+		area.a = fact;
+
+		smallDisplay.textContent = '';
+		largeDisplay.textContent = area.a.join('');
+	}
+}
+
 /*
 	=============================================================================
 	=============================================================================
@@ -223,8 +254,12 @@ function bks() {
 const numbers = Array.from(document.querySelectorAll('.number'));
 const operators = Array.from(document.querySelectorAll('.operator'));
 const equalTo = document.querySelector('#equal');
+
 const clearButton = document.getElementById('clear');
 const deleteButton = document.getElementById('backspace');
+
+const percentButton = document.getElementById('percentage');
+const factButton = document.getElementById('factorial');
 
 const largeDisplay = document.querySelector('.large-display');
 const smallDisplay = document.querySelector('.small-display');
@@ -248,3 +283,7 @@ let equals = equalTo.addEventListener('click', (e) =>
 clearButton.addEventListener('click', () => wipe());
 
 deleteButton.addEventListener('click', () => bks());
+
+percentButton.addEventListener('click', () => getPercent());
+
+factButton.addEventListener('click', () => getFactorial());
