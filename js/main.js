@@ -172,7 +172,7 @@ function stageDisplayNumber(varr) {
 	}
 }
 
-function stageAnswer(varr) {
+function stageAnswer() {
 	if (area.a.length < 1) return;
 
 	if (area.a.length > 0 && area.b.length > 0) {
@@ -306,7 +306,7 @@ factButton.addEventListener('click', () => getFactorial());
 document.addEventListener('keydown', (e) => {
 	let digitRegex = /[0-9]/g;
 	let operatorRegex = /[\+\*-/]/g;
-	let equalRegex = /=/g;
+	let equalRegex = /[=enter]/ig;
 
 	let clearRegex = /c/i;
 	let deleteRegex = /backspace/i;
