@@ -108,11 +108,14 @@ function stageDisplayOperator(varr) {
 			}
 		}
 	}
+
 	if (area.a.length > 0 && area.b.length < 1) {
 		if (area.o != null) {
 			return;
 		}
 
+		if (varr === '*') varr = 'x';
+		if (varr === '/') varr = '÷';
 		area.o = varr;
 		smallDisplay.textContent = area.a.join('') + ' ' + varr + ' ';
 		largeDisplay.textContent = 0;
@@ -130,6 +133,10 @@ function stageDisplayOperator(varr) {
 
 	if (area.a.length > 0 && area.b.length > 0) {
 		let ans = getAns();
+
+		if (varr === '*') varr = 'x';
+		if (varr === '/') varr = '÷';
+
 		area.o = varr;
 
 		smallDisplay.textContent = ans.join('') + ' ' + varr + ' ';
@@ -192,7 +199,7 @@ function bks() {
 			smallDisplay.textContent = `${area.a.join('')} ${area.o} ${area.b.join(
 				'',
 			)}`;
-			return 'yippeee';
+			return;
 		}
 
 		if (area.o !== null) {
@@ -287,3 +294,31 @@ deleteButton.addEventListener('click', () => bks());
 percentButton.addEventListener('click', () => getPercent());
 
 factButton.addEventListener('click', () => getFactorial());
+
+/*
+	========================================================================
+
+	KEYBOARD SUPPORT UNIT
+
+	========================================================================
+*/
+
+document.addEventListener('keydown', (e) => {
+	let digitRegex = /[0-9]/g;
+	let operatorRegex = /[\+\*-/]/g;
+	let equalRegex = /=/g;
+
+	let clearRegex = /c/i;
+	let deleteRegex = /backspace/i;
+
+	let factRegex = /!/g;
+	let percentRegex = /%/g;
+
+	if (digitRegex.test(e.key)) return stageDisplayNumber(e.key);
+	if (operatorRegex.test(e.key)) return stageDisplayOperator(e.key);
+	if (deleteRegex.test(e.key)) return bks();
+	if (clearRegex.test(e.key)) return wipe();
+	if (factRegex.test(e.key)) return getFactorial();
+	if (percentRegex.test(e.key)) return getPercent();
+	if (equalRegex.test(e.key)) return stageAnswer();
+});
