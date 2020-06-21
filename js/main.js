@@ -304,7 +304,7 @@ factButton.addEventListener('click', () => getFactorial());
 */
 
 document.addEventListener('keydown', (e) => {
-	let digitRegex = /[0-9.]/g;
+	let digitRegex = /[0-9\.]/g;
 	let operatorRegex = /[\+\*-/]/g;
 	let equalRegex = /[=enter]/ig;
 
