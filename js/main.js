@@ -304,7 +304,8 @@ factButton.addEventListener('click', () => getFactorial());
 */
 
 document.addEventListener('keydown', (e) => {
-	let digitRegex = /^[0-9]+$/;
+	let digitRegex = /^[0-9]/;
+	let dotRegex = /\./
 	let operatorRegex = /[\+\*-/]/g;
 	let equalRegex = /[=enter]/ig;
 
@@ -314,6 +315,7 @@ document.addEventListener('keydown', (e) => {
 	let factRegex = /!/g;
 	let percentRegex = /%/g;
 
+	if (dotRegex.test(e.key)) return stageDisplayNumber(e.key)
 	if (digitRegex.test(e.key)) return stageDisplayNumber(e.key);
 	if (operatorRegex.test(e.key)) return stageDisplayOperator(e.key);
 	if (deleteRegex.test(e.key)) return bks();
@@ -321,4 +323,5 @@ document.addEventListener('keydown', (e) => {
 	if (factRegex.test(e.key)) return getFactorial();
 	if (percentRegex.test(e.key)) return getPercent();
 	if (equalRegex.test(e.key)) return stageAnswer();
+
 });
