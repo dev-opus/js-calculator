@@ -309,7 +309,7 @@ document.addEventListener('keydown', (e) => {
 	let operatorRegex = /[\+\*-/]/g;
 	let equalRegex = /[=enter]/ig;
 
-	let clearRegex = /c/i;
+	let clearRegex = /^c$/i;
 	let deleteRegex = /backspace/i;
 
 	let factRegex = /!/g;
