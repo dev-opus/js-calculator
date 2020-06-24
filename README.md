@@ -23,7 +23,7 @@ General information:
       you don't need to press 'enter' or click on '=', the calculator performs and 
       displays the result of the operation automatically
   
-      this calculator was built with a minimalistic philosophy for its design and usage 
+      this calculator was built with a minimalist philosophy for its design and usage 
       so most features and capabilities of typical scientific calculators are not present in this
       app.
 
