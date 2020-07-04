@@ -1,6 +1,4 @@
-This is a web based calculator project.
-
-It is part of the Odin's project curriculum assignment.
+This is A minimalist calculator app made with pure HTML, CSS and JavaScript to flex my understanding of the fundamentals of JavaScript as well as DOM manipulation as covered by The Odin Project's Curriculum.
 
 Notes for keyboard usage:
 
